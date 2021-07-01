@@ -1,0 +1,17 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+open_api:
+  path: /api/doc/{version}
+  methods: [GET]
+  defaults:
+    _controller: App\OpenApi\OpenApiController
+
+open_api_spec:
+  path: /api/doc/spec/{version}
+  methods: [GET]
+  defaults:
+    _controller: App\OpenApi\SpecController
+
+skeleton_api:
+  resource: '../src/Skeleton/Infrastructure/Framework/Symfony/Resources/config/routes.yaml'

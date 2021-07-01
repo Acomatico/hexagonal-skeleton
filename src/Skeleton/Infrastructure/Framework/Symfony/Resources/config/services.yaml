@@ -1,0 +1,21 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  App\Skeleton\Application\Query\:
+    resource: '../../../../../Application/Query/*/*/*Handler.php'
+
+  App\Skeleton\Application\Command\:
+    resource: '../../../../../Application/Command/*/*/*Handler.php'
+    tags:
+      - { name: 'tactician.handle', typehints: true }
+
+  App\Skeleton\Infrastructure\Domain\:
+    resource: '../../../../Domain/*'
+    exclude: '../../../../Domain/Hydrator/*'
+
+  App\Skeleton\Infrastructure\UI\Http\Controller\:
+    resource: '../../../../UI/Http/Controller/*'
+    tags: ['controller.service_arguments']
