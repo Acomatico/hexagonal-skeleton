@@ -19,6 +19,3 @@ services:
   App\Skeleton\Infrastructure\UI\Http\Controller\:
     resource: '../../../../UI/Http/Controller/*'
     tags: ['controller.service_arguments']
-
-  App\Skeleton\Application\Middleware\AuthorizationMiddleware:
-    class: skeleton.middleware.query_bus.query_handler

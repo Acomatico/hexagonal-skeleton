@@ -16,7 +16,7 @@ class Uuid
         $this->id = $id;
     }
 
-    public function generate(?string $id = null): self
+    public static function generate(?string $id = null): self
     {
         return new static($id ?? BaseUuid::uuid4()->toString());
     }

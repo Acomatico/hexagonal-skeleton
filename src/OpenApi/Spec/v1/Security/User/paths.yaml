@@ -1,0 +1,25 @@
+createUser:
+  post:
+    operationId: security.user.create
+    servers:
+      - url: '/api/v1'
+    summary: Create a new user
+    tags: ['User']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: 'someemail@mail.com'
+              password:
+                type: string
+                example: 'somepassword'
+              repeatedPassword:
+                type: string
+                example: 'somepassword'
+    responses:
+      200:
+        description: 'change this later'

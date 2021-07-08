@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace App\Security\Domain\Model\User;
 
-class User
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class User implements UserInterface
 {
     private UserId $id;
 
     private string $email;
 
     private string $password;
+
+    private array $roles;
+
+    private ?string $salt;
 
     private \DateTimeInterface $createdAt;
 
@@ -20,6 +26,8 @@ class User
         UserId $id,
         string $email,
         string $password,
+        array $roles,
+        ?string $salt,
         \DateTimeInterface $createdAt,
         \DateTimeInterface $updatedAt
     )
@@ -27,6 +35,8 @@ class User
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
+        $this->roles = $roles;
+        $this->salt = $salt;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
     }
@@ -34,13 +44,16 @@ class User
     public static function create(
         UserId $id,
         string $email,
-        string $password
+        string $password,
+        ?string $salt
     ): self
     {
         return new self(
             $id,
             $email,
             $password,
+            [],
+            $salt,
             new \DateTimeImmutable(),
             new \DateTimeImmutable()
         );
@@ -61,6 +74,16 @@ class User
         return $this->password;
     }
 
+    public function roles(): array
+    {
+        return $this->roles;
+    }
+
+    public function salt(): ?string
+    {
+        return $this->salt;
+    }
+
     public function createdAt(): \DateTimeInterface
     {
         return $this->createdAt;
@@ -70,6 +93,36 @@ class User
     {
         return $this->updatedAt;
     }
+
+    public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    public function getUserIdentifier(): UserId
+    {
+        return $this->id;
+    }
+
+    public function eraseCredentials(): void
+    {
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
 
     public function update(
         ?string $email,
@@ -88,4 +141,5 @@ class User
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
 }

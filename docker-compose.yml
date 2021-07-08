@@ -6,6 +6,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: root
+    expose:
+      - "3306"
+    container_name: database
+
 
   adminer:
     image: adminer

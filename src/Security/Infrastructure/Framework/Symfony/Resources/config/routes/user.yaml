@@ -1,0 +1,5 @@
+create_user:
+  path: /register
+  methods: [POST]
+  defaults:
+    _controller: App\Security\Infrastructure\UI\Http\Controller\User\CreateUserController

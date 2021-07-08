@@ -4,13 +4,20 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
+        jwt:
+            id: App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: users_in_memory
+        api:
+            pattern: ^/api/.*
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - 'lexik_jwt_authentication.jwt_token_authenticator'
+            provider: jwt
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

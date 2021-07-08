@@ -5,6 +5,9 @@ info:
 servers:
   - url: '/api/v1'
 
+paths:
+  /users/register:
+    $ref: 'Security/User/paths.yaml#/createUser'
 
 components:
   securitySchemes:

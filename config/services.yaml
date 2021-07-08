@@ -1,7 +1,9 @@
+parameters:
+
 imports:
     - { resource: '../src/Skeleton/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
-
-parameters:
+    - { resource: '../src/Shared/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
+    - { resource: '../src/Security/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
 
 services:
     # default configuration for services in *this* file
@@ -14,13 +16,11 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+    App\Security\Infrastructure\UI\Http\Controller\:
+        resource: '../src/Security/Infrastructure/UI/Http/Controller/*'
+        public: true
+        tags: [ 'controller.service_arguments' ]
+
     App\OpenApi\:
         resource: '../src/OpenApi/*'
         public: true

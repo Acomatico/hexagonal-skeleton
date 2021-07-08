@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Security\Infrastructure\Security;
+namespace App\Security\Infrastructure\Security\Authorizer;
 
 use App\Shared\Application\Security\ApplicantInterface;
 use App\Shared\Application\Security\AuthorizerInterface;

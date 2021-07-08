@@ -1,0 +1,3 @@
+user:
+  resource: 'routes/user.yaml'
+  prefix: '/users'

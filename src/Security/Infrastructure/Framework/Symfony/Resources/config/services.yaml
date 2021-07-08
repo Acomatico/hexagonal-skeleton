@@ -2,7 +2,11 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+
+  App\Security\Infrastructure\UI\Http\Controller\:
+    resource: '../../../../UI/Http/Controller/*'
     public: true
+    tags: [ 'controller.service_arguments' ]
 
   App\Security\Application\Query\:
     resource: '../../../../../Application/Query/*/*/*Handler.php'
@@ -16,6 +20,7 @@ services:
     resource: '../../../../Domain/*'
     exclude: '../../../../Domain/Hydrator/*'
 
-  App\Security\Infrastructure\UI\Http\Controller\:
-    resource: '../../../../UI/Http/Controller/*'
-    tags: ['controller.service_arguments']
+  App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
+  App\Security\Domain\Model\User\UserRepositoryInterface: '@App\Security\Infrastructure\Domain\Model\User\DoctrineUserRepository'
+
+
