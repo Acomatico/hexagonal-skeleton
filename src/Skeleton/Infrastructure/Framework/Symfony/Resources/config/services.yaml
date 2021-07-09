@@ -10,7 +10,7 @@ services:
   App\Skeleton\Application\Command\:
     resource: '../../../../../Application/Command/*/*/*Handler.php'
     tags:
-      - { name: 'tactician.handle', typehints: true }
+      - { name: 'tactician.handler', typehints: true }
 
   App\Skeleton\Infrastructure\Domain\:
     resource: '../../../../Domain/*'

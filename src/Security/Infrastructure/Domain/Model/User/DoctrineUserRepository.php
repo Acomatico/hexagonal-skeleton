@@ -9,6 +9,7 @@ use App\Security\Domain\Model\User\UserId;
 use App\Security\Domain\Model\User\UserRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class DoctrineUserRepository implements UserRepositoryInterface
 {
@@ -30,5 +31,14 @@ class DoctrineUserRepository implements UserRepositoryInterface
     public function findByEmail(string $email)
     {
         return $this->repository->findOneBy(['email' => $email]);
+    }
+
+    public function save(User $user): void
+    {
+        if ($this->findByEmail($user->email())) {
+            throw new BadRequestException();
+        }
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }

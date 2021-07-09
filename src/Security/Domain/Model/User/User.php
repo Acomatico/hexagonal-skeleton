@@ -45,7 +45,7 @@ class User implements UserInterface
         UserId $id,
         string $email,
         string $password,
-        ?string $salt
+        ?string $salt = null
     ): self
     {
         return new self(

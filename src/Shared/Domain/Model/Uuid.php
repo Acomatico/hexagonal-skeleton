@@ -26,6 +26,11 @@ class Uuid
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->id;
+    }
+
     private function isUuidValid(string $id): void
     {
         if (!BaseUuid::isValid($id)) {

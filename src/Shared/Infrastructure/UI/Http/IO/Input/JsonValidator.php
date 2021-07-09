@@ -13,9 +13,9 @@ class JsonValidator
 {
     private Validator $schemaValidator;
 
-    public function __construct(Validator $schemaValidator)
+    public function __construct(?Validator $schemaValidator)
     {
-        $this->schemaValidator = $schemaValidator;
+        $this->schemaValidator = $schemaValidator ?? new Validator();
     }
 
     public function validate(\stdClass $input, string $schema): array

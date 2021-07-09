@@ -12,15 +12,23 @@ services:
     resource: '../../../../../Application/Query/*/*/*Handler.php'
 
   App\Security\Application\Command\:
-    resource: '../../../../../Application/Command/*/*/*Handler.php'
+    resource: '../../../../../Application/Command/*/*/*'
+    exclude: '../../../../../Application/Command/*/*/*Command.php'
     tags:
-      - { name: 'tactician.handle', typehints: true }
+      - { name: 'tactician.handler', typehints: true }
+
+  App\Security\Application\Service\:
+    resource: '../../../../../Application/Service/*'
 
   App\Security\Infrastructure\Domain\:
     resource: '../../../../Domain/*'
     exclude: '../../../../Domain/Hydrator/*'
 
+  App\Security\Infrastructure\UI\Http\IO\:
+    resource: '../../../../UI/Http/IO/*'
+
   App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
   App\Security\Domain\Model\User\UserRepositoryInterface: '@App\Security\Infrastructure\Domain\Model\User\DoctrineUserRepository'
+  App\Shared\Infrastructure\UI\Http\IO\Input\User\CreateUserTransformer: ~
 
 
