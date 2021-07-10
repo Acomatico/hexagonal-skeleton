@@ -15,7 +15,7 @@ class AuthenticateUserTransformer extends BaseInputTransformer
 
         $data = $this->parseJson($requestBody);
 
-        $this->assertValidData($data, '');
+        $this->assertValidData($data, __DIR__.'/Schema/input.user.authenticate_user.json');
 
         return $data;
     }

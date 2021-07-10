@@ -23,3 +23,26 @@ createUser:
     responses:
       200:
         description: 'change this later'
+
+authenticateUser:
+  post:
+    operationId: security.user.authenticate
+    servers:
+      - url: '/api/v1'
+    summary: Authenticate an user
+    tags: ['User']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: 'someemail@mail.com'
+              password:
+                type: string
+                example: 'somepassword'
+    responses:
+      200:
+        description: 'change this later'

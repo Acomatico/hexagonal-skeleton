@@ -9,6 +9,9 @@ paths:
   /users/register:
     $ref: 'Security/User/paths.yaml#/createUser'
 
+  /users/auth:
+    $ref: 'Security/User/paths.yaml#/authenticateUser'
+
 components:
   securitySchemes:
     bearerAuth:
