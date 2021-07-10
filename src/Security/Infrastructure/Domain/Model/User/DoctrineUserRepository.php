@@ -36,7 +36,7 @@ class DoctrineUserRepository implements UserRepositoryInterface
     public function save(User $user): void
     {
         if ($this->findByEmail($user->email())) {
-            throw new BadRequestException();
+            throw new BadRequestException('Email already taken');
         }
         $this->entityManager->persist($user);
         $this->entityManager->flush();

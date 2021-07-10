@@ -3,3 +3,9 @@ create_user:
   methods: [POST]
   defaults:
     _controller: App\Security\Infrastructure\UI\Http\Controller\User\CreateUserController
+
+authenticate_user:
+  path: /auth
+  methods: [POST]
+  defaults:
+    _controller: App\Security\Infrastructure\UI\Http\Controller\User\AuthenticateUserController

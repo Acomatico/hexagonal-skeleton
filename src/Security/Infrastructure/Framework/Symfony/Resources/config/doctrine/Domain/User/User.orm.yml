@@ -6,7 +6,7 @@ App\Security\Domain\Model\User\User:
       columns: [ id ]
   id:
     id:
-      type: string
+      type: user_id
       length: 36
       options:
         fixed: true

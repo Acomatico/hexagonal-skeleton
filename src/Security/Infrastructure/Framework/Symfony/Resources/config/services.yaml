@@ -3,6 +3,9 @@ services:
     autowire: true
     autoconfigure: true
 
+  App\Security\Infrastructure\Framework\Symfony\Security\:
+    resource: '../../Security/*'
+
   App\Security\Infrastructure\UI\Http\Controller\:
     resource: '../../../../UI/Http/Controller/*'
     public: true
@@ -17,9 +20,6 @@ services:
     tags:
       - { name: 'tactician.handler', typehints: true }
 
-  App\Security\Application\Service\:
-    resource: '../../../../../Application/Service/*'
-
   App\Security\Infrastructure\Domain\:
     resource: '../../../../Domain/*'
     exclude: '../../../../Domain/Hydrator/*'
@@ -28,7 +28,7 @@ services:
     resource: '../../../../UI/Http/IO/*'
 
   App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
+  App\Security\Domain\Model\User\PasswordEncoderInterface: '@App\Security\Infrastructure\Framework\Symfony\Security\PasswordEncoder'
   App\Security\Domain\Model\User\UserRepositoryInterface: '@App\Security\Infrastructure\Domain\Model\User\DoctrineUserRepository'
-  App\Shared\Infrastructure\UI\Http\IO\Input\User\CreateUserTransformer: ~
 
 

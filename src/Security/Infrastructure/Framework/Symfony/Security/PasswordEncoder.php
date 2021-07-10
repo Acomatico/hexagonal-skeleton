@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Security\Application\Service;
+namespace App\Security\Infrastructure\Framework\Symfony\Security;
 
+use App\Security\Domain\Model\User\PasswordEncoderInterface;
 use App\Security\Domain\Model\User\User;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 
-class PasswordEncoder
+class PasswordEncoder implements PasswordEncoderInterface
 {
     private PasswordHasherFactoryInterface $passwordHasher;
 
