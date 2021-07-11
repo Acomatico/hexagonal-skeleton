@@ -6,7 +6,7 @@ namespace App\Security\Infrastructure\UI\Http\Controller\User;
 
 use App\Security\Application\Command\User\AuthenticateUser\AuthenticateUserCommand;
 use App\Security\Domain\Exception\User\InvalidAuthenticationDataException;
-use App\Security\Infrastructure\UI\Http\IO\Input\User\AuthenticateUserTransformer;
+use App\Security\Infrastructure\UI\Http\IO\Input\User\Transformer\AuthenticateUserTransformer;
 use App\Security\Infrastructure\UI\Http\IO\Output\Error\BadRequestErrorOutput;
 use App\Security\Infrastructure\UI\Http\IO\Output\Success\User\AuthenticateUserOutput;
 use App\Shared\Infrastructure\UI\Http\IO\Exception\TransformerException;

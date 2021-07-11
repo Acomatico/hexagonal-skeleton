@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Security\Application\Command\User\AuthenticateUser;
 
-use App\Shared\Application\ServiceRequest;
+use App\Shared\Application\AnonymousServiceRequest;
 
-class AuthenticateUserCommand implements ServiceRequest
+class AuthenticateUserCommand
 {
     private string $email;
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Security\Application\Service;
 
 use App\Security\Domain\Model\User\User;
+use App\Shared\Infrastructure\Framework\Symfony\Security\SecurityUser;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class TokenManager
@@ -19,6 +20,7 @@ class TokenManager
 
     public function generateAccessToken(User $user)
     {
-        return $this->tokenManager->create($user);
+        $securityUser = SecurityUser::createFromDomainUser($user);
+        return $this->tokenManager->create($securityUser);
     }
 }

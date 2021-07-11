@@ -30,8 +30,15 @@ services:
   App\Security\Infrastructure\UI\Http\IO\:
     resource: '../../../../UI/Http/IO/*'
 
+  App\Security\Application\Middleware\:
+    resource: '../../../../../Application/Middleware/*'
+
+  App\Security\Infrastructure\Security\:
+    resource: '../../../../Security/*'
+
   App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
+  App\Security\Application\Service\TokenManager: ~
   App\Security\Domain\Model\User\PasswordEncoderInterface: '@App\Security\Infrastructure\Framework\Symfony\Security\PasswordEncoder'
   App\Security\Domain\Model\User\UserRepositoryInterface: '@App\Security\Infrastructure\Domain\Model\User\DoctrineUserRepository'
-  App\Security\Application\Service\TokenManager: ~
-
+  App\Shared\Application\Security\AuthorizerInterface: '@App\Security\Infrastructure\Security\Authorizer\SameUserAuthorizer'
+  App\Shared\Application\Security\ApplicantProviderInterface: '@App\Shared\Infrastructure\Security\GenericApplicantProvider'

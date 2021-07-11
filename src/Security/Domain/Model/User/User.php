@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security\Domain\Model\User;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
-class User implements UserInterface
+class User
 {
     private UserId $id;
 
@@ -94,36 +92,6 @@ class User implements UserInterface
         return $this->updatedAt;
     }
 
-    public function getUsername(): string
-    {
-        return $this->email;
-    }
-
-    public function getUserIdentifier(): UserId
-    {
-        return $this->id;
-    }
-
-    public function eraseCredentials(): void
-    {
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function getRoles(): array
-    {
-        return $this->roles;
-    }
-
-    public function getSalt(): ?string
-    {
-        return $this->salt;
-    }
-
-
     public function update(
         ?string $email,
         ?string $password
@@ -141,5 +109,4 @@ class User implements UserInterface
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
-
 }

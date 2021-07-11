@@ -46,3 +46,26 @@ authenticateUser:
     responses:
       200:
         description: 'change this later'
+
+updateUser:
+  put:
+    operationId: security.user.update
+    servers:
+      - url: '/api/v1'
+    summary: Update user ifnromation
+    tags: ['User']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: 'someemail@mail.com'
+              password:
+                type: string
+                example: 'somepassword'
+    responses:
+      200:
+        description: 'change this later'

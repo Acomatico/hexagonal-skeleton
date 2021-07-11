@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Security\Infrastructure\Framework\Symfony\Security;
 
-use App\Security\Domain\Model\User\User;
-use App\Security\Domain\Model\User\UserId;
 use App\Security\Domain\Model\User\UserRepositoryInterface;
+use App\Shared\Infrastructure\Framework\Symfony\Security\SecurityUser;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
@@ -21,12 +21,23 @@ class JWTUserProvider implements UserProviderInterface
 
     public function loadUserByUsername(string $username)
     {
-        return $this->userRepository->findByEmail($username);
+        $domainUser = $this->userRepository->findByEmail($username);
+        if (!$domainUser) {
+            throw new UnauthorizedHttpException('');
+        }
+
+        return SecurityUser::createFromDomainUser($domainUser);
     }
 
     public function loadUserByIdentifier(string $identifier)
     {
-        return $this->userRepository->findById(UserId::generate($identifier));
+        $domainUser = $this->userRepository->findByEmail($identifier);
+
+        if (!$domainUser) {
+            throw new UnauthorizedHttpException('');
+        }
+
+        return SecurityUser::createFromDomainUser($domainUser);
     }
 
     public function refreshUser(UserInterface $user)
@@ -36,6 +47,6 @@ class JWTUserProvider implements UserProviderInterface
 
     public function supportsClass(string $class)
     {
-        return User::class === $class;
+        return SecurityUser::class === $class;
     }
 }

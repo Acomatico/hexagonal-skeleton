@@ -1,11 +1,17 @@
 create_user:
-  path: /register
+  path: /users/register
   methods: [POST]
   defaults:
     _controller: App\Security\Infrastructure\UI\Http\Controller\User\CreateUserController
 
 authenticate_user:
-  path: /auth
+  path: /users/auth
   methods: [POST]
   defaults:
     _controller: App\Security\Infrastructure\UI\Http\Controller\User\AuthenticateUserController
+
+update_user:
+  path: /users
+  methods: [PUT]
+  defaults:
+    _controller: App\Security\Infrastructure\UI\Http\Controller\User\UpdateUserController

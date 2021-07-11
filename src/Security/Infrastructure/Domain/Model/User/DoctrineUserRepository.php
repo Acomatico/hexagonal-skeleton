@@ -23,12 +23,12 @@ class DoctrineUserRepository implements UserRepositoryInterface
         $this->repository = $entityManager->getRepository(User::class);
     }
 
-    public function findById(UserId $id)
+    public function findById(UserId $id): ?User
     {
         return $this->repository->find($id->id());
     }
 
-    public function findByEmail(string $email)
+    public function findByEmail(string $email): ?User
     {
         return $this->repository->findOneBy(['email' => $email]);
     }
@@ -40,5 +40,10 @@ class DoctrineUserRepository implements UserRepositoryInterface
         }
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+    }
+
+    public function update(User $user): void
+    {
+        // TODO: Implement update() method.
     }
 }

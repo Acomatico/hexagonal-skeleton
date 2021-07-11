@@ -7,9 +7,8 @@ namespace App\Security\Infrastructure\Framework\Symfony\Security;
 use App\Security\Domain\Exception\User\InvalidAuthenticationDataException;
 use App\Security\Domain\Model\User\PasswordEncoderInterface;
 use App\Security\Domain\Model\User\User;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use App\Shared\Infrastructure\Framework\Symfony\Security\SecurityUser;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class PasswordEncoder implements PasswordEncoderInterface
 {
@@ -22,16 +21,17 @@ class PasswordEncoder implements PasswordEncoderInterface
 
     public function encode(string $password): string
     {
-        $hasher =$this->passwordHasher->getPasswordHasher(User::class);
+        $hasher =$this->passwordHasher->getPasswordHasher(SecurityUser::class);
 
         return $hasher->hash($password);
     }
 
-    public function isPasswordValid(UserInterface $user, string $password): void
+    public function isPasswordValid(User $user, string $password): void
     {
-        $hasher = $this->passwordHasher->getPasswordHasher(User::class);
+        $securityUser = SecurityUser::createFromDomainUser($user);
+        $hasher = $this->passwordHasher->getPasswordHasher($securityUser);
 
-        $isPasswordValid = $hasher->verify($user->getPassword(), $password);
+        $isPasswordValid = $hasher->verify($securityUser->getPassword(), $password);
 
         if (!$isPasswordValid) {
             throw new InvalidAuthenticationDataException();

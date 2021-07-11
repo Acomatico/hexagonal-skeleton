@@ -6,4 +6,5 @@ namespace App\Shared\Application;
 
 interface ServiceRequest
 {
+    public function userId(): string;
 }

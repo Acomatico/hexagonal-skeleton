@@ -9,6 +9,9 @@ paths:
   /users/register:
     $ref: 'Security/User/paths.yaml#/createUser'
 
+  /users:
+    $ref: 'Security/User/paths.yaml#/updateUser'
+
   /users/auth:
     $ref: 'Security/User/paths.yaml#/authenticateUser'
 

@@ -3,8 +3,6 @@ services:
     autowire: true
     autoconfigure: true
 
-  app.security.user_provider:
-    class: App\Shared\Infrastructure\Security\GenericApplicantProvider
-
+  App\Shared\Infrastructure\Security\GenericApplicantProvider: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\BaseInputTransformer: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\JsonValidator: ~

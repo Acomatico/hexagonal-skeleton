@@ -1,9 +1,9 @@
 security:
     encoders:
-        App\Security\Domain\Model\User\User:
+        App\Shared\Infrastructure\Framework\Symfony\Security\SecurityUser:
             algorithm: auto
     # https://symfony.com/doc/current/security/experimental_authenticators.html
-    enable_authenticator_manager: true
+    enable_authenticator_manager: false
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
@@ -13,13 +13,20 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api_doc:
+            pattern: ^/api/doc
+            security: false
+        api_public:
+            pattern: ^/api/v1/users/(auth|register)
+            stateless: true
+            security: false
         api:
             pattern: ^/api/.*
             stateless: true
             anonymous: false
             guard:
                 authenticators:
-                    - 'lexik_jwt_authentication.jwt_token_authenticator'
+                    - lexik_jwt_authentication.jwt_token_authenticator
             provider: jwt
 
             # activate different ways to authenticate
@@ -31,5 +38,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/users/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/users/auth, roles: IS_AUTHENTICATED_ANONYMOUSLY }
