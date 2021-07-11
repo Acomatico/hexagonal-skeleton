@@ -44,6 +44,7 @@ class DoctrineUserRepository implements UserRepositoryInterface
 
     public function update(User $user): void
     {
-        // TODO: Implement update() method.
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }

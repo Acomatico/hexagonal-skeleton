@@ -8,7 +8,7 @@ security:
     providers:
         users_in_memory: { memory: null }
         jwt:
-            id: App\Security\Infrastructure\Framework\Symfony\Security\JWTUserProvider
+            id: App\Shared\Infrastructure\Framework\Symfony\Security\JWTUserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

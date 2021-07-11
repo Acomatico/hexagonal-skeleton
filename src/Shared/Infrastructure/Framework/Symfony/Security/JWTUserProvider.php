@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Security\Infrastructure\Framework\Symfony\Security;
+namespace App\Shared\Infrastructure\Framework\Symfony\Security;
 
 use App\Security\Domain\Model\User\UserRepositoryInterface;
-use App\Shared\Infrastructure\Framework\Symfony\Security\SecurityUser;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;

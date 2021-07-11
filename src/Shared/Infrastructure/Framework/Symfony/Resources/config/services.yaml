@@ -6,3 +6,6 @@ services:
   App\Shared\Infrastructure\Security\GenericApplicantProvider: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\BaseInputTransformer: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\JsonValidator: ~
+  App\Shared\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
+  App\Shared\Application\Security\AuthorizerInterface: '@App\Security\Infrastructure\Security\Authorizer\SameUserAuthorizer'
+  App\Shared\Application\Security\ApplicantProviderInterface: '@App\Shared\Infrastructure\Security\GenericApplicantProvider'
