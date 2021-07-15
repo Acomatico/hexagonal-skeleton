@@ -15,6 +15,9 @@ paths:
   /users/auth:
     $ref: 'Security/User/paths.yaml#/authenticateUser'
 
+  /movies:
+    $ref: 'Core/Movie/paths.yaml#/moviesCRUD'
+
 components:
   securitySchemes:
     bearerAuth:

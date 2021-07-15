@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Application\QueryBus;
+namespace App\Shared\Infrastructure\QueryBus;
+
+use App\Shared\Application\QueryBus\QueryInterface;
 
 class QueryTranslator
 {

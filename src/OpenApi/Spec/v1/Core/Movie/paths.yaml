@@ -1,0 +1,29 @@
+moviesCRUD:
+  post:
+    operationId: core.movie.create
+    servers:
+      - url: '/api/v1'
+    summary: Create a new user
+    tags: ['Movie']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: 'Die Hard'
+              year:
+                type: string
+                example: '1988'
+              description:
+                type: string
+                example: 'Cool movie'
+              genres:
+                type: array
+                items:
+                  type: string
+    responses:
+      200:
+        description: 'change this later'

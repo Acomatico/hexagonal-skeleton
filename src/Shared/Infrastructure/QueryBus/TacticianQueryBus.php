@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Application\QueryBus;
+namespace App\Shared\Infrastructure\QueryBus;
 
-use App\Shared\Infrastructure\QueryBus\QueryBusInterface;
+use App\Shared\Application\QueryBus\QueryInterface;
 use League\Tactician\CommandBus;
 
 class TacticianQueryBus implements QueryBusInterface

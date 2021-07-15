@@ -3,9 +3,16 @@ services:
     autowire: true
     autoconfigure: true
 
+  App\Shared\Infrastructure\QueryBus\TacticianQueryBus:
+    arguments: [ '@tactician.commandbus.api_query' ]
+
+  App\Shared\Infrastructure\QueryBus\QueryHandlerMiddleware: ~
+  App\Shared\Infrastructure\QueryBus\QueryTranslator: ~
+  App\Shared\Infrastructure\QueryBus\QueryResolver: ~
   App\Shared\Infrastructure\Security\GenericApplicantProvider: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\BaseInputTransformer: ~
   App\Shared\Infrastructure\UI\Http\IO\Input\JsonValidator: ~
   App\Shared\Infrastructure\Framework\Symfony\Security\JWTUserProvider: ~
   App\Shared\Application\Security\AuthorizerInterface: '@App\Security\Infrastructure\Security\Authorizer\SameUserAuthorizer'
   App\Shared\Application\Security\ApplicantProviderInterface: '@App\Shared\Infrastructure\Security\GenericApplicantProvider'
+  App\Shared\Infrastructure\QueryBus\QueryBusInterface: '@App\Shared\Infrastructure\QueryBus\TacticianQueryBus'

@@ -1,0 +1,21 @@
+App\Core\Domain\Model\Genre\Genre:
+  type: entity
+  table: genre
+  indexes:
+    id:
+      columns: [ id ]
+  id:
+    id:
+      type: string
+      length: 36
+      options:
+        fixed: true
+      column: id
+  fields:
+    code:
+      type: string
+      column: code
+      unique: true
+    name:
+      type: string
+      column: name

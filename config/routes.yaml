@@ -10,9 +10,9 @@ open_api_spec:
   defaults:
     _controller: App\OpenApi\SpecController
 
-skeleton:
+core:
   prefix: '/api/v1'
-  resource: '../src/Skeleton/Infrastructure/Framework/Symfony/Resources/config/routes.yaml'
+  resource: '../src/Core/Infrastructure/Framework/Symfony/Resources/config/routes.yaml'
 
 security:
   prefix: '/api/v1'

@@ -7,6 +7,7 @@ doctrine:
         #server_version: '13'
         types:
             user_id: App\Security\Infrastructure\Persistence\Doctrine\Type\User\UserIdType
+            uuid: App\Core\Infrastructure\Persistence\Doctrine\Type\UuidType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -18,3 +19,15 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Security/Infrastructure/Framework/Symfony/Resources/config/doctrine/Domain/User'
                 prefix: 'App\Security\Domain\Model\User'
                 alias: User
+            Movie:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/src/Core/Infrastructure/Framework/Symfony/Resources/config/doctrine/Domain/Movie'
+                prefix: 'App\Core\Domain\Model\Movie'
+                alias: Movie
+            Genre:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/src/Core/Infrastructure/Framework/Symfony/Resources/config/doctrine/Domain/Genre'
+                prefix: 'App\Core\Domain\Model\Genre'
+                alias: Genre

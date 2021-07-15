@@ -1,0 +1,34 @@
+App\Core\Domain\Model\Movie\Movie:
+  type: entity
+  table: movie
+  indexes:
+    id:
+      columns: [ id ]
+  id:
+    id:
+      type: uuid
+      length: 36
+      options:
+        fixed: true
+      column: id
+  fields:
+    title:
+      type: string
+      column: title
+    year:
+      type: string
+      column: year
+    description:
+      type: text
+      column: description
+  manyToMany:
+    genres:
+      targetEntity: App\Core\Domain\Model\Genre\Genre
+      joinTable:
+        name: movie_genre
+        joinColumns:
+          genre_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          movie_id:
+            referencedColumnName: id

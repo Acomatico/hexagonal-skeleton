@@ -1,7 +1,7 @@
 parameters:
 
 imports:
-    - { resource: '../src/Skeleton/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
+    - { resource: '../src/Core/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
     - { resource: '../src/Shared/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
     - { resource: '../src/Security/Infrastructure/Framework/Symfony/Resources/config/services.yaml'}
 

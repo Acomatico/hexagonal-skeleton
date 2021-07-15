@@ -14,3 +14,7 @@ tactician:
 #                - tactician.middleware.doctrine
                 - App\Security\Application\Middleware\AuthorizationMiddleware
                 - tactician.middleware.command_handler
+        api_query:
+            middleware:
+                - App\Security\Application\Middleware\AuthorizationMiddleware
+                - App\Shared\Infrastructure\QueryBus\QueryHandlerMiddleware
