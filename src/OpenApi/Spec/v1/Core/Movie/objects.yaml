@@ -1,0 +1,21 @@
+components:
+  Movie:
+    type: object
+    description: output for a Movie
+    properties:
+      id:
+        type: string
+        example: '69aa5305-a99u-40ed-b915-34bfe6dc1e93'
+      title:
+        type: string
+        example: 'Die hard'
+      year:
+        type: string
+        example: '1988'
+      description:
+        type: string
+        example: 'On Christmas Eve, New York City Police Department (NYPD) Detective John McClane arrives in Los Angeles, hoping to reconcile with his estranged wife, Holly, at a party held by her employer, the Nakatomi Corporation. He is driven to Nakatomi Plaza by a limo driver, Argyle, who offers to wait for McClane in the garage. While McClane changes clothes, the tower is seized by German radical Hans Gruber and his heavily armed team, including Karl and Theo. Everyone in the tower is taken hostage except for McClane, who slips away.'
+      genres:
+        type: array
+        items:
+          $ref: '../Genre/objects.yaml#/components/Genre'

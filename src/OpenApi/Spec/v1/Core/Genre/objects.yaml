@@ -1,0 +1,14 @@
+components:
+  Genre:
+    type: object
+    description: output for a Genre
+    properties:
+      id:
+        type: string
+        example: '36774d9d-cbad-436a-89f0-1f9cd2d971f3'
+      name:
+        type: string
+        example: 'Action'
+      code:
+        type: string
+        example: 'action'

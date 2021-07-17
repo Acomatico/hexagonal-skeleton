@@ -1,0 +1,34 @@
+components:
+  InvalidCredentials:
+    type: object
+    description: output for bad authentication
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'BadRequest'
+          message:
+            type: string
+            example: 'Invalid Credentials'
+          target:
+            type: string
+            example: 'User'
+
+  EmailAlreadyTaken:
+    type: object
+    description: output for when register when an used email
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'BadRequest'
+          message:
+            type: string
+            example: 'Email already taken'
+          target:
+            type: string
+            example: 'input'

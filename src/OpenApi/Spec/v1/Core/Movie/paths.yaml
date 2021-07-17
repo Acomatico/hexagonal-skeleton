@@ -26,4 +26,17 @@ moviesCRUD:
                   type: string
     responses:
       200:
-        description: 'change this later'
+        description: 'Output for a successfully created movie'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'objects.yaml#/components/Movie'
+      400:
+        description: 'Bad Request Output'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'errors.yaml#/components/MovieAlreadyExists'
+                - $ref: '../Genre/errors.yaml#/components/NotFoundGenre'

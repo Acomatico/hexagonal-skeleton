@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Domain\Model\Movie;
 
+use App\Core\Domain\Exception\Movie\MovieAlreadyExistException;
 use App\Core\Domain\Model\Movie\Movie;
 use App\Core\Domain\Model\Movie\MovieRepositoryInterface;
 use Doctrine\DBAL\Connection;
@@ -20,6 +21,8 @@ class MySQLMovieRepository implements MovieRepositoryInterface
 
     public function save(Movie $movie): void
     {
+        $this->checkMovieIsUnique($movie);
+
         $sql = 'INSERT INTO movie SET
                 `id` = :id,
                 `title` = :title,
@@ -35,6 +38,22 @@ class MySQLMovieRepository implements MovieRepositoryInterface
 
         $this->connection->executeStatement($sql, $parameters);
         $this->saveMovieGenres($movie);
+    }
+
+    public function checkMovieIsUnique(Movie $movie): void
+    {
+        $sql = 'SELECT id FROM movie WHERE title = :title AND year = :year LIMIT 1';
+
+        $parameters = [
+            'title' => $movie->title(),
+            'year' => $movie->year()
+        ];
+
+        $statement = $this->connection->executeQuery($sql, $parameters);
+
+        if (0 < $statement->rowCount()) {
+            throw new MovieAlreadyExistException();
+        }
     }
 
     private function saveMovieGenres(Movie $movie)

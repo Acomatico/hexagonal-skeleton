@@ -48,7 +48,8 @@ class AuthenticateUserController
             );
         } catch (InvalidAuthenticationDataException $exception) {
             return new JsonResponse(
-                new BadRequestErrorOutput('Invalid credentials', 'email, password')
+                new BadRequestErrorOutput('Invalid credentials', 'User'),
+                JsonResponse::HTTP_UNAUTHORIZED
             );
         }
     }

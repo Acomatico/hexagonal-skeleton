@@ -21,6 +21,11 @@ class MovieGenres implements Iterator, Countable
         }
     }
 
+    public static function generateEmpty(): self
+    {
+        return new self([]);
+    }
+
     public static function generate(array $genres): self
     {
         return new self($genres);
@@ -59,5 +64,10 @@ class MovieGenres implements Iterator, Countable
     public function addGenre(Genre $genre): void
     {
         $this->genres->append($genre);
+    }
+
+    public function toArray(): array
+    {
+        return $this->genres->getArrayCopy();
     }
 }

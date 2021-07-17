@@ -1,0 +1,17 @@
+components:
+  MovieAlreadyExists:
+    type: object
+    description: output for a Movie
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'BadRequest'
+          message:
+            type: string
+            example: 'The movie with that title and year already exists'
+          target:
+            type: string
+            example: 'Movie'

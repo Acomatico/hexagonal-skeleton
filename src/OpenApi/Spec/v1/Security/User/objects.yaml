@@ -1,0 +1,7 @@
+components:
+  Login:
+    type: object
+    properties:
+      accessToken:
+        type: object
+        example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MjY1MTg2ODQsImV4cCI6MTcyNjUxODY4NCwicm9sZXMiOltdLCJ1c2VybmFtZSI6InNvbWVlbWFpbEBtYWlsLmNvbSJ9.DolAnJi-X9ZG3YaslwHmEZr3uw4ZDk_6pLkUjbhz0WsiEhWuqvds6094gKbVWmn87hEVu66TSQa1VL4-3Eu-tSObj1MhmTK5pzWIQygL71scAlSQvnHNnTXkl3Q2lJapJsQ3hdUTADuP-ZV5OMnbNjTysesQJGSyEinYjcu1vR8ZIImwii_KIfatwql_tSNmJpc2j4CIau5zaNeDUcprn10scxSI0BvqoEZojZ1pkilG3BAkSS4RDODl7tnUPqMJpMHhghkFMyoGIHFI57hm2i15WQV18E_Yqf_aXRPSnyJgRNO5sy3VrLIHdScwHzM3WhN1HBH9-PA_9iEvGnHM5Q'

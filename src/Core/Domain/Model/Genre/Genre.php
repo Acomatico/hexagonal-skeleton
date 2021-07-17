@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Domain\Model\Genre;
 
-use App\Shared\Domain\Model\Uuid;
 
 class Genre
 {
@@ -14,18 +13,19 @@ class Genre
 
     private string $code;
 
-    public function __construct(Uuid $id, string $name, string $code)
+    public function __construct(GenreId $id, string $name, string $code)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->code = $code;
     }
 
-    public static function generate(Uuid $id, string $name, string $code): self
+    public static function generate(GenreId $id, string $name, string $code): self
     {
         return new self($id, $name, $code);
     }
 
-    public function id(): Uuid
+    public function id(): GenreId
     {
         return $this->id;
     }

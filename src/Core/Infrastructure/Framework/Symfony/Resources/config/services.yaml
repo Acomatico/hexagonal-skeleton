@@ -23,7 +23,8 @@ services:
     resource: '../../../../UI/Http/Controller/*'
     tags: ['controller.service_arguments']
 
-  App\Core\Infrastructure\UI\Http\IO\:
-    resource: '../../../../UI/Http/IO/*'
+  App\Core\Infrastructure\UI\Http\IO\Input\:
+    resource: '../../../../UI/Http/IO/Input/*'
 
   App\Core\Domain\Model\Genre\GenreViewInterface: '@App\Core\Infrastructure\Domain\Model\Genre\MySQLGenreView'
+  App\Core\Domain\Model\Movie\MovieRepositoryInterface: '@App\Core\Infrastructure\Domain\Model\Movie\MySQLMovieRepository'

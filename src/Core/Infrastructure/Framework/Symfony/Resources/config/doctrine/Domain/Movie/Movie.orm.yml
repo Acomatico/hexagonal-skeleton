@@ -27,8 +27,8 @@ App\Core\Domain\Model\Movie\Movie:
       joinTable:
         name: movie_genre
         joinColumns:
-          genre_id:
+          movie_id:
             referencedColumnName: id
         inverseJoinColumns:
-          movie_id:
+          genre_id:
             referencedColumnName: id

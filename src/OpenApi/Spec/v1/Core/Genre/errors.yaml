@@ -1,0 +1,17 @@
+components:
+  NotFoundGenre:
+    type: object
+    description: output for a Genre not found
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'NotFound'
+          message:
+            type: string
+            example: 'The genre was not found'
+          target:
+            type: string
+            example: 'Genre'

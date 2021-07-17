@@ -23,6 +23,13 @@ createUser:
     responses:
       200:
         description: 'change this later'
+      400:
+        description: 'Email taken response'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/EmailAlreadyTaken'
 
 authenticateUser:
   post:
@@ -45,7 +52,19 @@ authenticateUser:
                 example: 'somepassword'
     responses:
       200:
-        description: 'change this later'
+        description: 'Successful login output'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'objects.yaml#/components/Login'
+      401:
+        description: 'Invalid credentials response'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/InvalidCredentials'
 
 updateUser:
   put:
