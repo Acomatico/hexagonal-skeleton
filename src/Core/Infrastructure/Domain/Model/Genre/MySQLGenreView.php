@@ -7,6 +7,7 @@ namespace App\Core\Infrastructure\Domain\Model\Genre;
 use App\Core\Domain\Model\Genre\Genre;
 use App\Core\Domain\Model\Genre\GenreId;
 use App\Core\Domain\Model\Genre\GenreViewInterface;
+use App\Core\Infrastructure\Domain\Hydrator\Genre\GenreHydrator;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -14,9 +15,12 @@ class MySQLGenreView implements GenreViewInterface
 {
     private Connection $connection;
 
+    private GenreHydrator $hydrator;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->connection = $entityManager->getConnection();
+        $this->hydrator = new GenreHydrator();
     }
 
     public function getOneByCode(string $code): ?Genre
@@ -31,12 +35,8 @@ class MySQLGenreView implements GenreViewInterface
         return $this->hydrate($statement->fetchAssociative());
     }
 
-    private function hydrate(array $data): Genre
+    private function hydrate(array $data)
     {
-        return Genre::generate(
-            GenreId::generate($data['id']),
-            $data['name'],
-            $data['code']
-        );
+        return $this->hydrator->build($data);
     }
 }

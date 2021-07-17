@@ -18,6 +18,10 @@ paths:
   /movies:
     $ref: 'Core/Movie/paths.yaml#/moviesCRUD'
 
+  /movies/{movieId}:
+    $ref: 'Core/Movie/paths.yaml#/getMovieById'
+
+
 components:
   securitySchemes:
     bearerAuth:

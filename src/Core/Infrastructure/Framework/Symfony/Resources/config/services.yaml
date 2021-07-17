@@ -27,4 +27,5 @@ services:
     resource: '../../../../UI/Http/IO/Input/*'
 
   App\Core\Domain\Model\Genre\GenreViewInterface: '@App\Core\Infrastructure\Domain\Model\Genre\MySQLGenreView'
+  App\Core\Domain\Model\Movie\MovieViewInterface: '@App\Core\Infrastructure\Domain\Model\Movie\MySQLMovieView'
   App\Core\Domain\Model\Movie\MovieRepositoryInterface: '@App\Core\Infrastructure\Domain\Model\Movie\MySQLMovieRepository'

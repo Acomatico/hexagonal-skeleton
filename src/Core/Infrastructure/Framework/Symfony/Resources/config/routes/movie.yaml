@@ -3,3 +3,9 @@ create_movie:
   methods: [POST]
   defaults:
     _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\CreateMovieController
+
+get_movie:
+  path: /movies/{movieId}
+  methods: [GET]
+  defaults:
+    _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\GetMovieByIdController

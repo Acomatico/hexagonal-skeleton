@@ -3,7 +3,7 @@ moviesCRUD:
     operationId: core.movie.create
     servers:
       - url: '/api/v1'
-    summary: Create a new user
+    summary: Create a new movie
     tags: ['Movie']
     requestBody:
       content:
@@ -40,3 +40,21 @@ moviesCRUD:
               oneOf:
                 - $ref: 'errors.yaml#/components/MovieAlreadyExists'
                 - $ref: '../Genre/errors.yaml#/components/NotFoundGenre'
+
+getMovieById:
+  get:
+    operationId: core.movie.getById
+    servers:
+      - url: '/api/v1'
+    summary: Find a movie by id
+    tags: ['Movie']
+    parameters:
+      - in: path
+        name: movieId
+        required: true
+        description: 'Id of the movie'
+        schema:
+          type: string
+    responses:
+      200:
+        description: 'update later'
