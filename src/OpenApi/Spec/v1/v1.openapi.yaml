@@ -24,6 +24,9 @@ paths:
   /movies/{movieId}/add-genre:
     $ref: 'Core/Movie/paths.yaml#/addGenreToMovie'
 
+  /genres:
+    $ref: 'Core/Genre/paths.yaml#/genresCRUD'
+
 components:
   securitySchemes:
     bearerAuth:

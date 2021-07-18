@@ -12,7 +12,8 @@ use App\Core\Domain\Exception\Movie\MovieNotFoundException;
 use App\Core\Infrastructure\UI\Http\IO\Output\Error\Genre\GenreNotFoundErrorOutput;
 use App\Core\Infrastructure\UI\Http\IO\Output\Error\Movie\MovieAlreadyHasGenreErrorOutput;
 use App\Core\Infrastructure\UI\Http\IO\Output\Error\Movie\MovieNotFoundErrorOutput;
-use App\Security\Infrastructure\UI\Http\IO\Output\Error\BadRequestErrorOutput;
+use App\Shared\Infrastructure\UI\Http\IO\Input\Error\MissingRequiredPropertyError;
+use App\Shared\Infrastructure\UI\Http\IO\Output\Error\MultipleInputErrorOutput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -32,7 +33,7 @@ class AddGenreToMovieController
         $genreCode = json_decode($request->getContent(), true)['genre'] ?? null;
         if (null === $genreCode) {
             return new JsonResponse(
-                new BadRequestErrorOutput('Missing mandatory property "genre"', 'input'),
+                new MultipleInputErrorOutput([new MissingRequiredPropertyError('genre')], 'input'),
                 JsonResponse::HTTP_BAD_REQUEST
             );
         }

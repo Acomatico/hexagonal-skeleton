@@ -1,0 +1,5 @@
+create_genre:
+  path: /genres
+  methods: [POST]
+  defaults:
+    _controller: App\Core\Infrastructure\UI\Http\Controller\Genre\CreateGenreController

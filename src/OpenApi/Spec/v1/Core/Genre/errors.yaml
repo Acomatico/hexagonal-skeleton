@@ -15,3 +15,20 @@ components:
           target:
             type: string
             example: 'Genre'
+
+  GenreAlreadyExists:
+    type: object
+    description: output for a Genre not found
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'BadRequest'
+          message:
+            type: string
+            example: 'The genre already exists'
+          target:
+            type: string
+            example: 'Genre'

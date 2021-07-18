@@ -30,9 +30,6 @@ services:
   App\Security\Infrastructure\UI\Http\IO\:
     resource: '../../../../UI/Http/IO/*'
 
-  App\Security\Application\Middleware\:
-    resource: '../../../../../Application/Middleware/*'
-
   App\Security\Infrastructure\Security\:
     resource: '../../../../Security/*'
 

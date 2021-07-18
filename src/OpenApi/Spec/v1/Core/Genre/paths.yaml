@@ -1,0 +1,34 @@
+genresCRUD:
+  post:
+    operationId: core.genre.create
+    servers:
+      - url: '/api/v1'
+    summary: Create a new genre
+    tags: ['Genre']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: 'Action'
+              name:
+                type: string
+                example: 'action'
+    responses:
+      200:
+        description: 'Output for a successfully created movie'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'objects.yaml#/components/Genre'
+      400:
+        description: 'Bad Request Output'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/GenreAlreadyExists'

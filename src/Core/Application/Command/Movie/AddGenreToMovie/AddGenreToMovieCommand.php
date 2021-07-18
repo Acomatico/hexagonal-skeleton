@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Core\Application\Command\Movie\AddGenreToMovie;
 
 use App\Core\Domain\Model\Genre\Genre;
+use App\Shared\Application\ServiceRequest;
 
-class AddGenreToMovieCommand
+class AddGenreToMovieCommand implements ServiceRequest
 {
     private string $userId;
 

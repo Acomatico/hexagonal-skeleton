@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Security\Application\Middleware;
+namespace App\Shared\Application\Middleware;
 
 use App\Shared\Application\Security\ApplicantInterface;
 use App\Shared\Application\Security\ApplicantProviderInterface;
