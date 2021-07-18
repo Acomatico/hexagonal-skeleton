@@ -7,6 +7,9 @@ services:
   App\Core\Application\Query\:
     resource: '../../../../../Application/Query/*/*/*Handler.php'
 
+  App\Core\Application\Listener\:
+    resource: '../../../../../Application/Listener/*'
+
   App\Core\Application\UseCase\:
     resource: '../../../../../Application/UseCase/*/*/*Handler.php'
 

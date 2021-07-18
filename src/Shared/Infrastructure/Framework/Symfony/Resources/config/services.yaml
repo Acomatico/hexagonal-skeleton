@@ -9,6 +9,9 @@ services:
   App\Shared\Application\Middleware\:
     resource: '../../../../../Application/Middleware/*'
 
+  App\Shared\Domain\Event\:
+    resource: '../../../../../Domain/Event/*'
+
   App\Shared\Infrastructure\QueryBus\QueryHandlerMiddleware: ~
   App\Shared\Infrastructure\QueryBus\QueryTranslator: ~
   App\Shared\Infrastructure\QueryBus\QueryResolver: ~
