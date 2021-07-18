@@ -21,6 +21,8 @@ paths:
   /movies/{movieId}:
     $ref: 'Core/Movie/paths.yaml#/getMovieById'
 
+  /movies/{movieId}/add-genre:
+    $ref: 'Core/Movie/paths.yaml#/addGenreToMovie'
 
 components:
   securitySchemes:

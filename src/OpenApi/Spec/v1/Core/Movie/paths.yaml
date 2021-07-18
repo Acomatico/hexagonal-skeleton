@@ -58,3 +58,30 @@ getMovieById:
     responses:
       200:
         description: 'update later'
+
+addGenreToMovie:
+  post:
+    operationId: core.movie.addGenre
+    servers:
+      - url: '/api/v1'
+    summary: Add a genre to a movie
+    tags: ['Movie']
+    parameters:
+      - in: path
+        name: movieId
+        required: true
+        description: 'Id of the movie'
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              genre:
+                type: string
+                example: action
+    responses:
+      200:
+        description: 'update later'

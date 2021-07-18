@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Domain\Model\Movie;
 
+use App\Core\Domain\Exception\Movie\MovieAlreadyHasThatGenreException;
 use App\Core\Domain\Model\Genre\Genre;
 use ArrayIterator;
 use Countable;
@@ -63,11 +64,21 @@ class MovieGenres implements Iterator, Countable
 
     public function addGenre(Genre $genre): void
     {
+        $this->validateGenreIsNotOnIterator($genre);
         $this->genres->append($genre);
     }
 
     public function toArray(): array
     {
         return $this->genres->getArrayCopy();
+    }
+
+    private function validateGenreIsNotOnIterator(Genre $newGenre)
+    {
+        foreach ($this->genres as $genre) {
+            if ($genre->code() === $newGenre->code()) {
+                throw new MovieAlreadyHasThatGenreException($newGenre->code());
+            }
+        }
     }
 }

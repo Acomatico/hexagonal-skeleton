@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\UI\Http\Controller\Movie;
 
 use App\Core\Application\Query\Movie\GetMovieById\GetMovieByIdQuery;
+use App\Core\Infrastructure\UI\Http\IO\Output\Error\Movie\MovieNotFoundErrorOutput;
 use App\Core\Infrastructure\UI\Http\IO\Output\Success\Movie\MovieOutput;
 use App\Shared\Infrastructure\QueryBus\QueryBusInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,6 +25,13 @@ class GetMovieByIdController
     {
         $userId = $security->getUser()->getId()->id();
         $movie = $this->queryBus->query(new GetMovieByIdQuery($userId, $movieId));
+
+        if (!$movie) {
+            return new JsonResponse(
+                new MovieNotFoundErrorOutput(),
+                JsonResponse::HTTP_NOT_FOUND
+            );
+        }
 
         return new JsonResponse(
             new MovieOutput($movie),

@@ -9,3 +9,9 @@ get_movie:
   methods: [GET]
   defaults:
     _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\GetMovieByIdController
+
+add_genre_to_movie:
+  path: /movies/{movieId}/add-genre
+  methods: [POST]
+  defaults:
+    _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\AddGenreToMovieController
