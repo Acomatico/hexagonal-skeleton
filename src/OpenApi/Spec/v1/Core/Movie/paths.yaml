@@ -57,7 +57,19 @@ getMovieById:
           type: string
     responses:
       200:
-        description: 'update later'
+        description: 'Success output'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'objects.yaml#/components/Movie'
+      404:
+        description: 'Movie Not Found'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/MovieNotFound'
 
 addGenreToMovie:
   post:
@@ -83,5 +95,19 @@ addGenreToMovie:
                 type: string
                 example: action
     responses:
-      200:
-        description: 'update later'
+      204:
+        description: 'Successfuly added  a genre to a movie'
+      404:
+        description: 'Bad Request Output'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/MovieNotFound'
+      400:
+        description: 'Bad Request Output'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'errors.yaml#/components/MovieAlreadyHasGenre'

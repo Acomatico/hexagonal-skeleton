@@ -1,7 +1,7 @@
 components:
   MovieAlreadyExists:
     type: object
-    description: output for a Movie
+    description: error output for when a movie already exists
     properties:
       error:
         type: object
@@ -12,6 +12,39 @@ components:
           message:
             type: string
             example: 'The movie with that title and year already exists'
+          target:
+            type: string
+            example: 'Movie'
+  MovieNotFound:
+    type: object
+    description: error output or when a movie is not found
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'NotFound'
+          message:
+            type: string
+            example: 'The movie was not found'
+          target:
+            type: string
+            example: 'Movie'
+
+  MovieAlreadyHasGenre:
+    type: object
+    description: error output or when trying to add a genre a movie already has
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: string
+            example: 'BadRequest'
+          message:
+            type: string
+            example: 'The movie already has the genre action'
           target:
             type: string
             example: 'Movie'
