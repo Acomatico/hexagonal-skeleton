@@ -6,13 +6,13 @@ namespace App\Shared\Domain\Event;
 
 class DomainEventPublisher implements DomainEventPublisherInterface
 {
-    private array $publishedEvents;
+    private array $subscribers;
 
     private static ?DomainEventPublisher $instance = null;
 
     private function __construct()
     {
-        $this->publishedEvents = [];
+        $this->subscribers = [];
     }
 
     public static function instance(): DomainEventPublisherInterface
@@ -26,17 +26,16 @@ class DomainEventPublisher implements DomainEventPublisherInterface
 
     public function publish(DomainEventInterface $event): void
     {
-        $this->publishedEvents[] = $event;
+        foreach ($this->subscribers as $subscriber) {
+            if ($subscriber->isSubscribedTo($event)) {
+                $subscriber->handle($event);
+            }
+        }
     }
 
-    public function publishedEvents(): array
+    public function subscribe(DomainEventSubscriberInterface $subscriber): void
     {
-        return $this->publishedEvents;
-    }
-
-    public function clearPublishedEvents(): void
-    {
-        $this->publishedEvents = [];
+        $this->subscribers[] = $subscriber;
     }
 
 }

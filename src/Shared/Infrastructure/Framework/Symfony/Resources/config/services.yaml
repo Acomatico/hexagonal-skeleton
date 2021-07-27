@@ -9,8 +9,8 @@ services:
   App\Shared\Application\Middleware\:
     resource: '../../../../../Application/Middleware/*'
 
-  App\Shared\Domain\Event\:
-    resource: '../../../../../Domain/Event/*'
+  App\Shared\Domain\Event\DomainEventPublisher:
+    factory: ['App\Shared\Domain\Event\DomainEventPublisher', 'instance']
 
   App\Shared\Infrastructure\QueryBus\QueryHandlerMiddleware: ~
   App\Shared\Infrastructure\QueryBus\QueryTranslator: ~

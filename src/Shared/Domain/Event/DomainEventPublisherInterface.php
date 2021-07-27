@@ -10,7 +10,5 @@ interface DomainEventPublisherInterface
 
     public function publish(DomainEventInterface $event): void;
 
-    public function publishedEvents(): array;
-
-    public function clearPublishedEvents(): void;
+    public function subscribe(DomainEventSubscriberInterface $subscriber): void;
 }
