@@ -12,7 +12,6 @@ class ExampleListener implements DomainEventSubscriberInterface
 {
     public function handle(DomainEventInterface $event): void
     {
-        die('hue');
         // TODO: Implement handle() method.
     }
 
