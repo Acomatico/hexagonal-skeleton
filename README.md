@@ -8,27 +8,31 @@ Example project showcasing the implementation of DDD for REST APIs PHP. Using:
 * Doctrine, although implementations with just SQL are shown, and you can implement another database of your choice
 * OpenAPI for documentation and easily try out the examples
 
-#Project Structure
-
+Project Structure
+-----
 I built 3 bounded contexts each with their own Application/Domain/Infrastructure organization:
 * Security: For user creation and authorization
 * Core: Main business login. For this example Movie storage
 * Shared: For classes and interfaces which can be used in different bounded contexts, no business login should be conducted here
 
-##Application
+### Application
+
 * Query: Used for actions to view information
 * Command: Used for actions to create/change information
 * UseCase: Used for actions that require different "Core" Models (In this example I used Genres and Movies)
 
-##Domain
+### Domain
+
 Domain Models, try to have as much logic as possible
 
-##Infrastructure
+### Infrastructure
+
 * Framework: Everything related to Symfony should be here, such as configuration and the security user
 * Domain: Repositories/Views/Hydrators for database persistence and retrieval
 * UI: User Interface. Controllers and IO
 
-#Installation
+Installation
+-----
 1. execute `docker-compose up -d`
 2. Inside the docker container (`docker exec -it 'nameofthecontainer' bash`) create a new database and update the schema
 3. The database can be view/interacted on `8080` port, and the api documentation on `9090/api/doc/v1`
