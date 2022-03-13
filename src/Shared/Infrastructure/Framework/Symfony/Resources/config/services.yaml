@@ -12,6 +12,10 @@ services:
   App\Shared\Domain\Event\DomainEventPublisher:
     factory: ['App\Shared\Domain\Event\DomainEventPublisher', 'instance']
 
+  App\Shared\Domain\Event\DomainEventBus:
+    arguments:
+      - !tagged_iterator domain_event_subscriber
+      -
   App\Shared\Infrastructure\QueryBus\QueryHandlerMiddleware: ~
   App\Shared\Infrastructure\QueryBus\QueryTranslator: ~
   App\Shared\Infrastructure\QueryBus\QueryResolver: ~
@@ -22,3 +26,4 @@ services:
   App\Shared\Application\Security\AuthorizerInterface: '@App\Security\Infrastructure\Security\Authorizer\SameUserAuthorizer'
   App\Shared\Application\Security\ApplicantProviderInterface: '@App\Shared\Infrastructure\Security\GenericApplicantProvider'
   App\Shared\Infrastructure\QueryBus\QueryBusInterface: '@App\Shared\Infrastructure\QueryBus\TacticianQueryBus'
+  App\Shared\Domain\Event\DomainEventBusInterface: '@App\Shared\Domain\Event\DomainEventBus'

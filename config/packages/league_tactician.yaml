@@ -12,8 +12,10 @@ tactician:
 #                - tactician.middleware.locking
 # Doctrine transactional middleware, requires additional package - https://github.com/thephpleague/tactician-doctrine
 #                - tactician.middleware.doctrine
+                - App\Shared\Application\Middleware\DomainEventsMiddleware
                 - App\Shared\Application\Middleware\AuthorizationMiddleware
                 - tactician.middleware.command_handler
+
         api_query:
             middleware:
                 - App\Shared\Application\Middleware\AuthorizationMiddleware

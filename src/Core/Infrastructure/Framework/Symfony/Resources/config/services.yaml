@@ -9,6 +9,7 @@ services:
 
   App\Core\Application\Listener\:
     resource: '../../../../../Application/Listener/*'
+    tags: [domain_event_subscriber]
 
   App\Core\Application\UseCase\:
     resource: '../../../../../Application/UseCase/*/*/*Handler.php'

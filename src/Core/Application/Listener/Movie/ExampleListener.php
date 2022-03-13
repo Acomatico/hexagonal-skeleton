@@ -12,7 +12,7 @@ class ExampleListener implements DomainEventSubscriberInterface
 {
     public function handle(DomainEventInterface $event): void
     {
-        // TODO: Implement handle() method.
+
     }
 
     public function isSubscribedTo(DomainEventInterface $event): bool

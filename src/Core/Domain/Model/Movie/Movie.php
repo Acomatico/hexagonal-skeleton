@@ -6,6 +6,7 @@ namespace App\Core\Domain\Model\Movie;
 
 use App\Core\Domain\Event\Movie\MovieWasCreatedEvent;
 use App\Shared\Domain\Event\DomainEventPublisher;
+use App\Shared\Domain\Event\DomainEventRecorder;
 
 class Movie
 {
@@ -42,8 +43,7 @@ class Movie
         MovieGenres $genres
     ): self
     {
-        $publisher = DomainEventPublisher::instance();
-        $publisher->publish(new MovieWasCreatedEvent());
+        DomainEventRecorder::recordThat(new MovieWasCreatedEvent());
         return new self(
             $id,
             $title,
