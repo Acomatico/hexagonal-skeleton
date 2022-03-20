@@ -21,6 +21,9 @@ App\Core\Domain\Model\Movie\Movie:
     description:
       type: text
       column: description
+    reviewCount:
+      type: int
+      column: review_count
   manyToMany:
     genres:
       targetEntity: App\Core\Domain\Model\Genre\Genre

@@ -10,6 +10,7 @@ use App\Core\Domain\Model\Genre\GenreId;
 use App\Core\Domain\Model\Movie\Movie;
 use App\Core\Domain\Model\Movie\MovieId;
 use App\Core\Domain\Model\Movie\MovieRepositoryInterface;
+use App\Core\Infrastructure\Domain\Hydrator\Movie\MovieHydrator;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,9 +18,48 @@ class MySQLMovieRepository implements MovieRepositoryInterface
 {
     private Connection $connection;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private MovieHydrator $movieHydrator;
+
+    public function __construct(EntityManagerInterface $entityManager, MovieHydrator $movieHydrator)
     {
         $this->connection = $entityManager->getConnection();
+        $this->movieHydrator = $movieHydrator;
+    }
+
+    public function oneById(MovieId $id): ?Movie
+    {
+        $sql = 'SELECT id, title, year, description, review_count
+                FROM movie 
+                WHERE id = :id
+                LIMIT 1';
+
+        $movieData = $this->connection->executeQuery($sql, ['id' => $id->id()])->fetchAssociative();
+        if (!$movieData) {
+            return null;
+        }
+
+        $movieGenresSql = 'SELECT id, name, code
+                            FROM genre
+                            INNER JOIN movie_genre ON movie_genre.genre_id = genre.id
+                            WHERE movie_genre.movie_id = :movieId';
+        $genresData = $this->connection->executeQuery($sql, ['movieId' => $id->id()])->fetchAllAssociative();
+
+        $result = [
+            'id' => $movieData['id'],
+            'title' => $movieData['title'],
+            'year' => $movieData['year'],
+            'description' => $movieData['description'],
+            'reviewCount' => $movieData['review_count'],
+            'genres' => array_map(function (array $genre) {
+                return [
+                    'id' => $genre['id'],
+                    'name' => $genre['name'],
+                    'code' => $genre['code']
+                ];
+            }, $genresData)
+        ];
+
+        return $this->movieHydrator->build($result);
     }
 
     public function save(Movie $movie): void
@@ -30,7 +70,8 @@ class MySQLMovieRepository implements MovieRepositoryInterface
                 `id` = :id,
                 `title` = :title,
                 `year` = :year,
-                `description` = :description';
+                `description` = :description,
+                `review_count` = :reviewCount';
 
         $parameters = [
             'id' => $movie->id()->id(),

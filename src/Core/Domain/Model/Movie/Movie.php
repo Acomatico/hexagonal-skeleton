@@ -20,12 +20,15 @@ class Movie
 
     private MovieGenres $genres;
 
+    private int $reviewCount;
+
     private function __construct(
         MovieId $id,
         string $title,
         string $year,
         string $description,
-        MovieGenres $genres
+        MovieGenres $genres,
+        int $reviewCount
     )
     {
         $this->id = $id;
@@ -33,6 +36,7 @@ class Movie
         $this->year = $year;
         $this->description = $description;
         $this->genres = $genres;
+        $this->reviewCount = $reviewCount;
     }
 
     public static function create(
@@ -49,7 +53,8 @@ class Movie
             $title,
             $year,
             $description,
-            $genres
+            $genres,
+            0
         );
     }
 
@@ -76,5 +81,15 @@ class Movie
     public function genres(): MovieGenres
     {
         return $this->genres;
+    }
+
+    public function reviewCount(): int
+    {
+        return $this->reviewCount;
+    }
+
+    public function addReview(): void
+    {
+        $this->reviewCount += 1;
     }
 }
