@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Domain\Model\Movie;
 
-use App\Core\Domain\Model\Movie\Movie;
+use App\Core\Domain\Model\Movie\MovieView;
 use App\Core\Domain\Model\Movie\MovieViewInterface;
-use App\Core\Infrastructure\Domain\Hydrator\Movie\MovieHydrator;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -14,15 +13,12 @@ class MySQLMovieView implements MovieViewInterface
 {
     private Connection $connection;
 
-    private MovieHydrator $hydrator;
-
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->connection = $entityManager->getConnection();
-        $this->hydrator = new MovieHydrator();
     }
 
-    public function oneById(string $id): ?Movie
+    public function oneById(string $id): ?MovieView
     {
         $sql = 'SELECT * FROM movie WHERE id = :id LIMIT 1';
 
@@ -35,9 +31,15 @@ class MySQLMovieView implements MovieViewInterface
         $genres = $this->getMovieGenres($id);
         $movie['genres'] = $genres;
 
-        return $this->hydrate($movie);
+        return new MovieView(
+            $movie['id'],
+            $movie['title'],
+            $movie['year'],
+            $movie['description'],
+            $movie['genres'],
+            (int) $movie['review_count']
+        );
     }
-
 
     private function getMovieGenres(string $movieId): array
     {
@@ -48,10 +50,5 @@ class MySQLMovieView implements MovieViewInterface
         $statement = $this->connection->executeQuery($sql, ['id' => $movieId]);
 
         return $statement->fetchAllAssociative();
-    }
-
-    private function hydrate(array $data)
-    {
-        return $this->hydrator->build($data);
     }
 }

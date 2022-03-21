@@ -1,0 +1,26 @@
+App\Core\Domain\Model\Review\Review:
+  type: entity
+  table: movie
+  indexes:
+    id:
+      columns: [ id ]
+  id:
+    id:
+      type: uuid
+      length: 36
+      options:
+        fixed: true
+      column: id
+  fields:
+    movieId:
+      type: string
+      column: movie_id
+    reviewerId:
+      type: string
+      column: reviewer_id
+    title:
+      type: string
+      column: title
+    content:
+      type: text
+      column: content

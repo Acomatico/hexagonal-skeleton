@@ -1,0 +1,28 @@
+reviewCRUD:
+  post:
+    operationId: core.review.create
+    servers:
+      - url: '/api/v1'
+    summary: Create a new review
+    tags: ['Review']
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: 'Best movie ever'
+              content:
+                type: string
+                example: 'Becouse I said so'
+              movieId:
+                type: string
+                example: '36774d9d-cbad-436a-89f0-1f9cd2d971f3'
+    responses:
+      204:
+        description: 'Output for a successfully created Review'
+
+      400:
+        description: 'Bad Request Output'

@@ -20,10 +20,10 @@ class MySQLMovieRepository implements MovieRepositoryInterface
 
     private MovieHydrator $movieHydrator;
 
-    public function __construct(EntityManagerInterface $entityManager, MovieHydrator $movieHydrator)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->connection = $entityManager->getConnection();
-        $this->movieHydrator = $movieHydrator;
+        $this->movieHydrator = new MovieHydrator();
     }
 
     public function oneById(MovieId $id): ?Movie

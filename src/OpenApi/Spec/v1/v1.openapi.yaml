@@ -27,6 +27,9 @@ paths:
   /genres:
     $ref: 'Core/Genre/paths.yaml#/genresCRUD'
 
+  /review:
+    $ref: 'Core/Review/paths.yaml#/reviewCRUD'
+
 components:
   securitySchemes:
     bearerAuth:

@@ -14,7 +14,7 @@ class Review
 
     private MovieId $movieId;
 
-    private int $reviewerId;
+    private string $reviewerId;
 
     private string $title;
 
@@ -23,7 +23,7 @@ class Review
     private function __construct(
         ReviewId $reviewId,
         MovieId $movieId,
-        int $reviewerId,
+        string $reviewerId,
         string $title,
         string $content
     )
@@ -38,7 +38,7 @@ class Review
     public static function create(
         ReviewId $reviewId,
         MovieId $movieId,
-        int $reviewerId,
+        string $reviewerId,
         string $title,
         string $content
     ): self
@@ -60,7 +60,7 @@ class Review
         return $this->movieId;
     }
 
-    public function reviewerId(): int
+    public function reviewerId(): string
     {
         return $this->reviewerId;
     }

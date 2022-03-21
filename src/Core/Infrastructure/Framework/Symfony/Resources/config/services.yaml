@@ -35,3 +35,4 @@ services:
   App\Core\Domain\Model\Genre\GenreRepositoryInterface: '@App\Core\Infrastructure\Domain\Model\Genre\MySQLGenreRepository'
   App\Core\Domain\Model\Movie\MovieViewInterface: '@App\Core\Infrastructure\Domain\Model\Movie\MySQLMovieView'
   App\Core\Domain\Model\Movie\MovieRepositoryInterface: '@App\Core\Infrastructure\Domain\Model\Movie\MySQLMovieRepository'
+  App\Core\Domain\Model\Review\ReviewRepositoryInterface: '@App\Core\Infrastructure\Domain\Model\Review\MySQLReviewRepository'

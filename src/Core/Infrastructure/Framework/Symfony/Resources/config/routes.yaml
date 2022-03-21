@@ -3,3 +3,6 @@ movie:
 
 genre:
   resource: 'routes/genre.yaml'
+
+review:
+  resource: 'routes/review.yaml'
