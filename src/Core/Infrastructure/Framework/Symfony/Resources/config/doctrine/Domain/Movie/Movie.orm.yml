@@ -22,7 +22,7 @@ App\Core\Domain\Model\Movie\Movie:
       type: text
       column: description
     reviewCount:
-      type: int
+      type: integer
       column: review_count
   manyToMany:
     genres:

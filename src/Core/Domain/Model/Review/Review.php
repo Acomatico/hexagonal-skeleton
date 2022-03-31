@@ -10,7 +10,7 @@ use App\Shared\Domain\Event\DomainEventRecorder;
 
 class Review
 {
-    private ReviewId $reviewId;
+    private ReviewId $id;
 
     private MovieId $movieId;
 
@@ -21,14 +21,14 @@ class Review
     private string $content;
 
     private function __construct(
-        ReviewId $reviewId,
+        ReviewId $id,
         MovieId $movieId,
         string $reviewerId,
         string $title,
         string $content
     )
     {
-        $this->reviewId = $reviewId;
+        $this->id = $id;
         $this->movieId = $movieId;
         $this->reviewerId = $reviewerId;
         $this->title = $title;
@@ -50,9 +50,9 @@ class Review
         return new self($reviewId, $movieId, $reviewerId, $title, $content);
     }
 
-    public function reviewId(): ReviewId
+    public function id(): ReviewId
     {
-        return $this->reviewId;
+        return $this->id;
     }
 
     public function movieId(): MovieId

@@ -10,5 +10,7 @@ interface MovieRepositoryInterface
 
     public function save(Movie $movie): void;
 
+    public function update(Movie $movie): void;
+
     public function addGenreToMovies(Movie $movie): void;
 }

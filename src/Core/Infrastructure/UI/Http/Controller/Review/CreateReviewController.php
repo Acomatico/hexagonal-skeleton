@@ -43,6 +43,8 @@ class CreateReviewController
                 JsonResponse::HTTP_BAD_REQUEST
             );
         } catch (\Exception $exception) {
+            dump($exception);
+            die;
             return new JsonResponse(null, JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

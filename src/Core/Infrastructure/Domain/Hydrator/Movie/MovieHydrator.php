@@ -35,7 +35,8 @@ class MovieHydrator
             'description' => $data['description'],
             'genres' => MovieGenres::generate(array_map(function ($movie) {
                 return $this->genreHydrator->build($movie);
-            }, $data['genres']))
+            }, $data['genres'])),
+            'reviewCount' => $data['reviewCount']
         ];
 
 

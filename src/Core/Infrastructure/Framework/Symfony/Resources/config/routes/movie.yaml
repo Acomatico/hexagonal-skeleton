@@ -4,6 +4,12 @@ create_movie:
   defaults:
     _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\CreateMovieController
 
+list_movies:
+  path: /movies
+  methods: [GET]
+  defaults:
+    _controller: App\Core\Infrastructure\UI\Http\Controller\Movie\ListMoviesController
+
 get_movie:
   path: /movies/{movieId}
   methods: [GET]

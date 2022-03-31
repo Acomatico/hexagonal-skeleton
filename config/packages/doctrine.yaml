@@ -31,3 +31,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Core/Infrastructure/Framework/Symfony/Resources/config/doctrine/Domain/Genre'
                 prefix: 'App\Core\Domain\Model\Genre'
                 alias: Genre
+            Review:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/src/Core/Infrastructure/Framework/Symfony/Resources/config/doctrine/Domain/Review'
+                prefix: 'App\Core\Domain\Model\Review'
+                alias: Review

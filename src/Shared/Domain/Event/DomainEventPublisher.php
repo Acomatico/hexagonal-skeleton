@@ -26,8 +26,6 @@ class DomainEventPublisher implements DomainEventPublisherInterface
 
     public function publish(DomainEventInterface $event): void
     {
-        dump($event);
-        die;
         foreach ($this->subscribers as $subscriber) {
             if ($subscriber->isSubscribedTo($event)) {
                 $subscriber->handle($event);

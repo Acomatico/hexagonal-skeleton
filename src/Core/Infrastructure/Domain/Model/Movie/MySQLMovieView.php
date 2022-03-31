@@ -41,6 +41,29 @@ class MySQLMovieView implements MovieViewInterface
         );
     }
 
+    public function listBy(): array
+    {
+        $sql = 'SELECT * FROM movie';
+
+        $statement = $this->connection->executeQuery($sql);
+        if (0 === $statement->rowCount()) {
+            return null;
+        }
+
+        $movies = $statement->fetchAllAssociative();
+
+        return array_map(function (array $data) {
+            return new MovieView(
+                $data['id'],
+                $data['title'],
+                $data['year'],
+                $data['description'],
+                [],
+                (int) $data['review_count']
+            );
+        }, $movies);
+    }
+
     private function getMovieGenres(string $movieId): array
     {
         $sql = 'SELECT genre.* FROM genre 

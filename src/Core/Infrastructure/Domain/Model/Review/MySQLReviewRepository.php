@@ -33,7 +33,7 @@ class MySQLReviewRepository implements ReviewRepositoryInterface
     private function saveParameters(Review $review): array
     {
         return [
-            'id' => $review->reviewId()->id(),
+            'id' => $review->id()->id(),
             'movieId' => $review->movieId()->id(),
             'reviewerId' => $review->reviewerId(),
             'title' => $review->title(),

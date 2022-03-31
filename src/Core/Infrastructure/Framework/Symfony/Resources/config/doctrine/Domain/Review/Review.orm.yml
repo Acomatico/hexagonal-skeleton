@@ -1,6 +1,6 @@
 App\Core\Domain\Model\Review\Review:
   type: entity
-  table: movie
+  table: review
   indexes:
     id:
       columns: [ id ]

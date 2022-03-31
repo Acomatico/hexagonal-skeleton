@@ -1,4 +1,19 @@
 moviesCRUD:
+  get:
+    operationId: core.movie.list
+    servers:
+      - url: '/api/v1'
+    summary: List movies
+    tags: ['Movie']
+    responses:
+      200:
+        description: 'Output for a list of movies'
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: 'objects.yaml#/components/Movie'
+
   post:
     operationId: core.movie.create
     servers:

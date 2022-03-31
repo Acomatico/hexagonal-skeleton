@@ -1,5 +1,5 @@
 create_review:
-  path: /movies
+  path: /review
   methods: [POST]
   defaults:
     _controller: App\Core\Infrastructure\UI\Http\Controller\Review\CreateReviewController

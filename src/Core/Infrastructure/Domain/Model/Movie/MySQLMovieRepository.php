@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Domain\Model\Movie;
 
 use App\Core\Domain\Exception\Movie\MovieAlreadyExistException;
-use App\Core\Domain\Model\Genre\Genre;
 use App\Core\Domain\Model\Genre\GenreId;
 use App\Core\Domain\Model\Movie\Movie;
 use App\Core\Domain\Model\Movie\MovieId;
@@ -30,10 +29,10 @@ class MySQLMovieRepository implements MovieRepositoryInterface
     {
         $sql = 'SELECT id, title, year, description, review_count
                 FROM movie 
-                WHERE id = :id
+                WHERE id = :movieId
                 LIMIT 1';
 
-        $movieData = $this->connection->executeQuery($sql, ['id' => $id->id()])->fetchAssociative();
+        $movieData = $this->connection->executeQuery($sql, ['movieId' => $id->id()])->fetchAssociative();
         if (!$movieData) {
             return null;
         }
@@ -42,7 +41,7 @@ class MySQLMovieRepository implements MovieRepositoryInterface
                             FROM genre
                             INNER JOIN movie_genre ON movie_genre.genre_id = genre.id
                             WHERE movie_genre.movie_id = :movieId';
-        $genresData = $this->connection->executeQuery($sql, ['movieId' => $id->id()])->fetchAllAssociative();
+        $genresData = $this->connection->executeQuery($movieGenresSql, ['movieId' => $id->id()])->fetchAllAssociative();
 
         $result = [
             'id' => $movieData['id'],
@@ -73,15 +72,20 @@ class MySQLMovieRepository implements MovieRepositoryInterface
                 `description` = :description,
                 `review_count` = :reviewCount';
 
-        $parameters = [
-            'id' => $movie->id()->id(),
-            'title' => $movie->title(),
-            'year' => $movie->year(),
-            'description' => $movie->description()
-        ];
-
-        $this->connection->executeStatement($sql, $parameters);
+        $this->connection->executeStatement($sql, $this->getMovieParameters($movie));
         $this->saveMovieGenres($movie);
+    }
+
+    public function update(Movie $movie): void
+    {
+        $sql = 'UPDATE movie SET
+                `title` = :title,
+                `year` = :year,
+                `description` = :description,
+                `review_count` = :reviewCount
+                WHERE `id` = :id';
+
+        $this->connection->executeStatement($sql, $this->getMovieParameters($movie));
     }
 
     public function addGenreToMovies(Movie $movie): void
@@ -139,5 +143,16 @@ class MySQLMovieRepository implements MovieRepositoryInterface
         ];
 
         $this->connection->executeStatement($sql, $parameters);
+    }
+
+    private function getMovieParameters(Movie $movie): array
+    {
+        return [
+            'id' => $movie->id()->id(),
+            'title' => $movie->title(),
+            'year' => $movie->year(),
+            'description' => $movie->description(),
+            'reviewCount' => $movie->reviewCount()
+        ];
     }
 }

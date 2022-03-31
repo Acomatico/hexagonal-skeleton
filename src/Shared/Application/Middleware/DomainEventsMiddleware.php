@@ -25,8 +25,6 @@ class DomainEventsMiddleware implements Middleware
             foreach (DomainEventRecorder::recordedEvents() as $event) {
                 $this->domainEventsBus->publish($event);
             }
-            dump(DomainEventRecorder::recordedEvents());
-            die;
 
             return $result;
         } finally {

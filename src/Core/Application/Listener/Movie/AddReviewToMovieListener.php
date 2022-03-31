@@ -22,7 +22,7 @@ class AddReviewToMovieListener implements DomainEventSubscriberInterface
     {
         $movie = $this->movieRepository->oneById($event->movieId());
         $movie->addReview();
-        $this->movieRepository->save($movie);
+        $this->movieRepository->update($movie);
     }
 
     public function isSubscribedTo(DomainEventInterface $event): bool
